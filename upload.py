@@ -131,7 +131,11 @@ def upload_youtube_video(movie_path, json_file_path, img_path):
     time.sleep(2)
     done_button = bot.find_element(By.XPATH, '//*[@id="done-button"]')
     done_button.click()
-    time.sleep(15)
+    last_wating=calculate_upload_waiting_time(video_path, internet_speed)
+    if last_wating>40:
+        time.sleep(15)
+    else:
+        time.sleep(10)
     close_button = bot.find_element(By.XPATH, '//*[@id="close-button"]/div')
     close_button.click()
 
