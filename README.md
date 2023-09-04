@@ -12,6 +12,7 @@ run install.py
 Step 2:
 ```
 Inside setup.py update with your paths
+search chrome://version/ on google chrome beta
 executable_path = r"C:\Program Files\Google\Chrome Beta\Application\chrome.exe"
 profile_path = r"C:\Users\flacon\AppData\Local\Google\Chrome Beta\User Data\Default"
 videos_folder_path = r"C:\Users\falcon\Desktop\videos"
