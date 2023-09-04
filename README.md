@@ -21,3 +21,8 @@ Step 3:
 run upload.py
 ```
 
+#Remember
+```
+By default your videos will be uploaded 15 min after you create the json file
+Youtube allow 100  videos in every 24 hours
+```
