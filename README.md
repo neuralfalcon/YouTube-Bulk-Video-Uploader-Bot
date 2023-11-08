@@ -19,6 +19,10 @@ videos_folder_path = r"C:\Users\falcon\Desktop\videos"
 ```
 Step 3:
 ```
+run setup.py
+```
+Step 4:
+```
 run upload.py
 ```
 
