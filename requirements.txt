@@ -1,2 +1,2 @@
-speedtest
+speedtest-cli
 selenium
