@@ -66,7 +66,7 @@ def upload_youtube_video(movie_path, json_file_path, img_path):
     file_input = bot.find_element(By.XPATH, '//*[@id="content"]/input')
     file_input.send_keys(video_path)
     time.sleep(calculate_upload_waiting_time(video_path, internet_speed))  # Adjust the timeout as needed based on file size
-    
+    print("Video Upload done")
     if os.path.exists(img_path):
         thumbnail_path = os.path.abspath(img_path)
         print(thumbnail_path)
@@ -74,16 +74,17 @@ def upload_youtube_video(movie_path, json_file_path, img_path):
         thumbnail_input.send_keys(thumbnail_path)
     else:
         print(img_path)
+    print("Thumbnail part done")
     time.sleep(1)
 
     title, tags, description, schedule = read_json_file(json_file_path)
-
+    
     title_input = bot.find_element(By.ID, 'textbox')
     title_input.clear()
     title_input.send_keys(title)
 
     textboxes = bot.find_elements(By.ID, 'textbox')
-
+    
     if len(description) > 1:
         description_element = textboxes[1]
         description_element.clear()
@@ -97,18 +98,19 @@ def upload_youtube_video(movie_path, json_file_path, img_path):
         tags_input = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="text-input"]')))
         tags_input.clear()
         tags_input.send_keys(tags)
-
+    print("title, tags, description part done")  
+    
     next_button = bot.find_element(By.XPATH, '//*[@id="next-button"]')
     for i in range(3):
         next_button.click()
         time.sleep(1)
     time.sleep(2)
-
+    print("Click next done") 
     SCHEDULE_CONTAINER_ID = 'schedule-radio-button'
     SCHEDULE_DATE_ID = 'datepicker-trigger'
     SCHEDULE_DATE_TEXTBOX = '/html/body/ytcp-date-picker/tp-yt-paper-dialog/div/form/tp-yt-paper-input/tp-yt-paper-input-container/div[2]/div/iron-input/input'
     SCHEDULE_TIME = "/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-uploads-review/div[2]/div[1]/ytcp-video-visibility-select/div[3]/ytcp-visibility-scheduler/div[1]/ytcp-datetime-picker/div/div[2]/form/ytcp-form-input-container/div[1]/div/tp-yt-paper-input/tp-yt-paper-input-container/div[2]/div/iron-input/input"
-
+    print("Started schedule")
     if schedule:
         formatted_date, formatted_time = convert_date_format(schedule)
         wait = WebDriverWait(bot, 10)
@@ -127,10 +129,11 @@ def upload_youtube_video(movie_path, json_file_path, img_path):
     else:
         public_main_button = bot.find_element(By.NAME, 'PUBLIC')
         bot.find_element(By.ID, 'radioLabel', public_main_button).click()
-
+    
     time.sleep(2)
     done_button = bot.find_element(By.XPATH, '//*[@id="done-button"]')
     done_button.click()
+    print("Schedule Done") 
     last_wating=calculate_upload_waiting_time(video_path, internet_speed)
     if last_wating>40:
         time.sleep(15)
@@ -138,6 +141,7 @@ def upload_youtube_video(movie_path, json_file_path, img_path):
         time.sleep(10)
     close_button = bot.find_element(By.XPATH, '//*[@id="close-button"]/div')
     close_button.click()
+    print("Video Uploading process Done") 
 
 def read_json_file(file_path):
     with open(file_path, "r") as json_file:
