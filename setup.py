@@ -21,7 +21,7 @@ videos_folder_path = r"C:\Users\falcon\Desktop\videos"
 i_known_my_internet_speed=41.37
 internet_speed=(i_known_my_internet_speed/8)  
 #or
-# internet_speed=get_speed() #i don't know my internt speed
+# internet_speed=get_speed() #i don't know my internet speed
 
 
 
